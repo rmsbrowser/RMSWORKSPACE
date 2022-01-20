@@ -1,0 +1,89 @@
+import java.awt.Frame;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Button;
+import java.awt.Panel;
+import java.awt.MenuBar;
+import java.awt.Menu;
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.TextArea;
+import java.awt.TextField;
+
+
+public class RmsBrowser extends Frame{
+       // Inicio dia 09/03/2001
+       MenuBar barrademenu;
+       Menu arquivo;
+       Menu exibir;
+       Panel painel0;
+       Panel painel1;
+       Panel painel2;
+       Panel painel3;
+       Button botaoendereco;
+       Button botaoir;
+       TextField texto1;
+       TextField texto2;
+       int min_altura = 400;
+       int min_largura = 400;
+       String pagina_inicial = "http://www.ramsescaldas.com";
+
+       public RmsBrowser(){
+              super("RmsBrowser version 1.0 CopyRigth by RMS 2001");
+
+              setBackground(Color.lightGray);
+              setBounds(10,10,min_largura,min_altura);
+
+              Win w = new Win();
+              addWindowListener(w);
+
+              barrademenu = new MenuBar();
+              setMenuBar(barrademenu);
+
+              arquivo = new Menu("Arquivo");
+              barrademenu.add(arquivo);
+
+              exibir = new Menu("Exibir");
+              barrademenu.add(exibir);
+
+              painel0 = new Panel();
+              painel0.setLayout(new BorderLayout());          
+              add(painel0,BorderLayout.CENTER);
+
+              painel1 = new Panel();
+              painel1.setLayout(new BorderLayout());
+              painel0.add(painel1,BorderLayout.NORTH);
+
+              painel2 = new Panel();
+              painel2.setLayout(new BorderLayout());
+              painel1.add(painel2,BorderLayout.NORTH);
+
+              painel3 = new Panel();
+              painel3.setLayout(new BorderLayout());
+              painel2.add(painel3,BorderLayout.SOUTH);
+
+
+              botaoendereco = new Button("Endere‡o:");
+              painel3.add(botaoendereco,BorderLayout.WEST);
+
+              texto1 = new TextField(pagina_inicial,10);
+              texto1.setBounds(10,10,200,15);
+              texto1.setVisible(true);
+              painel3.add(texto1);
+
+              botaoir = new Button("Ir");
+              painel3.add(botaoir,BorderLayout.EAST);
+            
+              setVisible(true);
+              show();
+       }
+       class Win extends WindowAdapter{
+              public void windowClosing(WindowEvent event){
+                     dispose();
+              }
+       }
+       public static void main(String args[]){
+             RmsBrowser browser = new RmsBrowser();
+       }
+}
